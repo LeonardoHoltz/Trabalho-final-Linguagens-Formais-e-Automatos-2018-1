@@ -3,7 +3,7 @@ import sys
     Definition of the class Grammar
 """
 class Grammar:
-    def __init__(self):                                                         # The Chomsky's grammar it's a 4-uple
+    def __init__(self):                                                         # The Chomsky grammar is a 4-uple
         self.terminals = []                                                     # Makes a list of the terminal symbols
         self.variables = []                                                     # Makes a list of the variable symbols
         self.production_rules = []                                              # Makes a list of the production rules
@@ -28,7 +28,7 @@ main_grammar = Grammar()
 """
 file_name = sys.argv[1]                                                         # The second argument in the command line will be the name of the grammar file
 grammar_file = open(file_name, 'r')                                             # Opens the file with permission to read
-grammar_file.readline()                                                         # Skips the first line that always will be "#Terminais"
+grammar_file.readline()                                                         # Skips the first line that will always be "#Terminais"
 for line in grammar_file:
     if line[0] != "#":
         terminal = line[2:]
