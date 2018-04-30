@@ -3,7 +3,7 @@ import sys
     Definition of the class Grammar
 """
 class Grammar:
-    def __init__(self):                                                         # The Chomsky grammar is a 4-uple
+    def __init__(self):                                                         # The Chomsky's grammar it's a 4-uple
         self.terminals = []                                                     # Makes a list of the terminal symbols
         self.variables = []                                                     # Makes a list of the variable symbols
         self.production_rules = []                                              # Makes a list of the production rules
@@ -17,6 +17,9 @@ class Grammar:
     def add_initial(self, initial):
         self.initial_symbol = initial
 
+    def add_production_rule(self, production):
+        self.production_rules.append(production)
+
 #-------------------------------------------------------------------------------
 """
  Creation of the grammar that the program will use:
@@ -28,7 +31,7 @@ main_grammar = Grammar()
 """
 file_name = sys.argv[1]                                                         # The second argument in the command line will be the name of the grammar file
 grammar_file = open(file_name, 'r')                                             # Opens the file with permission to read
-grammar_file.readline()                                                         # Skips the first line that will always be "#Terminais"
+grammar_file.readline()                                                         # Skips the first line that always will be "#Terminais"
 for line in grammar_file:
     if line[0] != "#":
         terminal = line[2:]
@@ -59,10 +62,14 @@ for line in grammar_file:
     production_rule = production_rule[:index]
     production_rule = production_rule + " > "
     index1 = line.find("> [ ")
-    right = line[index1 + 4:]
-    production_rule = production_rule + right
+    right = line[(index1 + 4):]
+    right = right.split(" ] [ ",)
+    for item in right:
+        production_rule = production_rule + item
+    index2 = production_rule.find(" ]")
+    production_rule = production_rule[:index2]
     print(production_rule)
-
+    main_grammar.add_production_rule(production_rule)
 
 
 grammar_file.close()
@@ -70,10 +77,11 @@ grammar_file.close()
 print(main_grammar.initial_symbol)
 print(main_grammar.terminals)
 print(main_grammar.variables)
-
+print(main_grammar.production_rules)
 
 final_grammar = []
 final_grammar.append(main_grammar.variables)
 final_grammar.append(main_grammar.terminals)
+final_grammar.append(main_grammar.production_rules)
 final_grammar.append(main_grammar.initial_symbol)
 print(final_grammar)
