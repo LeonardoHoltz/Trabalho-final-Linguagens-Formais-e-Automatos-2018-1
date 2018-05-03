@@ -1,4 +1,5 @@
 import sys
+
 """
     Definition of the class Grammar
 """
@@ -68,20 +69,19 @@ for line in grammar_file:
         production_rule = production_rule + item
     index2 = production_rule.find(" ]")
     production_rule = production_rule[:index2]
-    print(production_rule)
     main_grammar.add_production_rule(production_rule)
-
 
 grammar_file.close()
 
-print(main_grammar.initial_symbol)
-print(main_grammar.terminals)
+print("\n The definition of Chomsky's grammar is a 4-uple:\n")
+print(" G = (V, T, P, S)\n")
+print(" Where\n")
+print(" V is all the variable symbols in the grammar:")
 print(main_grammar.variables)
-print(main_grammar.production_rules)
-
-final_grammar = []
-final_grammar.append(main_grammar.variables)
-final_grammar.append(main_grammar.terminals)
-final_grammar.append(main_grammar.production_rules)
-final_grammar.append(main_grammar.initial_symbol)
-print(final_grammar)
+print(" T is all the terminal symbols in the grammar:")
+print(main_grammar.terminals)
+print(" P is all the production rules in the grammar:\n")
+for production in main_grammar.production_rules:
+    print(" " + production + "\n")
+print(" S is the initial variable symbol in the grammar:\n")
+print(" S = " + main_grammar.initial_symbol + "\n")
