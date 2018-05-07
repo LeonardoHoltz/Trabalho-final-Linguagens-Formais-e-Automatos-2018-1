@@ -90,6 +90,6 @@ print("  V = {"+ ", ".join(variable for variable in main_grammar.variables) + "}
 print(" T is all the terminal symbols in the grammar:")
 print("  T = {"+ ", ".join(terminal for terminal in main_grammar.terminals) + "}")
 print(" P is all the production rules in the grammar:")
-print("  P = { " + "\n        ".join(production for production in main_grammar.production_rules) + " }")
+print("  P = { " + ",\n        ".join(production for production in main_grammar.production_rules) + " }")
 print(" S is the initial variable symbol in the grammar:")
 print("  S = " + main_grammar.initial_symbol)
