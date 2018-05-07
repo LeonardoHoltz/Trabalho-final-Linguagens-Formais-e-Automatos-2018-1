@@ -1,4 +1,4 @@
-# Trabalho-final-Linguagens-Formais-e-Aut-matos-2018-1
+# Trabalho-final-Linguagens-Formais-e-Automatos-2018-1
 Trabalho final da disciplina de Linguagens Formais e Autômatos 2018/1
 
 O trabalho é dividido em 3 etapas:
