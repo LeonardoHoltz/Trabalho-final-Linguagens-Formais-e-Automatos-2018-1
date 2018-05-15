@@ -68,13 +68,14 @@ for line in grammar_file:
     index = production_rule.find(" ")                                           # Find the index of the line that is " "
     production_rule = production_rule[:index]                                   # Skips the part of the line after " "
     production_rule = production_rule + " > "                                   # Add " > " in the string's end
-    index1 = line.find("> [ ")                                                  # Find the index of the line that is " [ "
+    index1 = line.find("> [ ")                                                  # Find the index of the line that is "> [ "
     right = line[(index1 + 4):]                                                 # The right of the production rule will start with a symbol
     right = right.split(" ] [ ",)                                               # Transform the right of the p.r. in a list of symbols
     for item in right:
-        production_rule = production_rule + item                                # Concatenates the production rule ("'Symbol' > ") with each symbol in the list
+        production_rule = production_rule + item + " "                          # Concatenates the production rule ("'Symbol' > ") with each symbol in the list
     index2 = production_rule.find(" ]")                                         # Find the index of production_rule that is " ]"
     production_rule = production_rule[:index2]                                  # Skips the part of the p.r. after " ]"
+    production_rule = production_rule + " "                                     # Add a " " in the end for future string manipulations
     main_grammar.add_production_rule(production_rule)                           # Add the production rule to the production rules list
 
 grammar_file.close()                                                            # Closes the grammar file
