@@ -43,17 +43,21 @@ def delete_empty_productions():
     if has_empty_production:
         simplified_grammar.production_rules.append(simplified_grammar.initial_symbol + " > V ") # Add the production of the empty symbol by the initial symbol
 
-    for rule in simplified_grammar.production_rules:
-        rule = rule[:-1]
 
-"""
+    for rule in simplified_grammar.production_rules:
+        updated_rule = rule[:-1]
+        index = simplified_grammar.production_rules.index(rule)
+        simplified_grammar.production_rules[index] = updated_rule
+
+
 def delete_unit_productions():
     unit_variables = {}                                                         # Creates a dictionary that every symbol is relacionated with their unit production_rules
     for rule in simplified_grammar.production_rules:                            # Search the production rules with unit productions
         for variable in simplified_grammar.variables:                           # For each variable that can be a unit production
-            if ("> " + variable) in rule:                                       # The
-"""
+            if ("> " + variable) in rule and not (variable + " ") in rule:      # The
+                print(rule)
 
 delete_empty_productions()
 print(" New production rules after the exclusions of the empty productions:")
 print("  P = { " + ",\n        ".join(production for production in simplified_grammar.production_rules) + " }")
+delete_unit_productions()
