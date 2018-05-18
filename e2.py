@@ -148,7 +148,6 @@ def delete_useless_symbols():
                 else:                                                           # if the symbol is a terminal
                     if symbol not in T2:
                         T2.append(symbol)                                       # the symbol will be put on T2 list
-        print(V2)
         new_V2_size = len(V2)                                                   # Calculates the new size of the V2 list
         new_T2_size = len(T2)                                                   # Calculates the new size of the T2 list
         if new_V2_size > V2_size:                                               # Checks if V2 has growed up
