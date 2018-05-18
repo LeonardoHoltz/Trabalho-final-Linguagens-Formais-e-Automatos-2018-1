@@ -178,7 +178,7 @@ def delete_useless_symbols():
         if left_of_production not in V2:                                        # If the symbol that generates the production is not in V2 list
             if rule not in must_delete_rules:
                 must_delete_rules.append(rule)                                  # Add the rule in the list of rules that will be removed from the grammar
-                must_delete_symbols.append(symbol)                              # Add the symbol in the list of symbols that will be removed from the grammar
+                must_delete_symbols.append(left_of_production)                  # Add the symbol in the list of symbols that will be removed from the grammar
 
     for rule in must_delete_rules:
         simplified_grammar.production_rules.remove(rule)                        # Removes the production rules from the grammar
