@@ -46,9 +46,9 @@ Exclusion of the productions that substitute variables
 """
 
 def delete_unit_productions():
-    unit_variables = {}                                                         # Creates a dictionary that every symbol is relacionated with their unit production_rules
+    unit_variables = {}                                                         # Creates a dictionary that every symbol is related with their unit production_rules
     for variable in simplified_grammar.variables:
-        unit_variables[variable] = []                                           # Each variable in this dictionary has a list relacionated
+        unit_variables[variable] = []                                           # Each variable in this dictionary has a list related
     unit_found = False                                                          # Boolean that represents if a unit production has been found
     must_delete_rules = []                                                      # List of production rules that will be deleted from the grammar
     for rule in simplified_grammar.production_rules:                            # Search the production rules with unit productions
@@ -56,10 +56,10 @@ def delete_unit_productions():
             if ("> " + variable + " ¬") in rule:                                # The rule must have this form to be a unit production
                 index = rule.find(" >")                                         # Finds the index of ">"
                 left_variable = rule[:index]                                    # Variable that generates the production
-                unit_variables[left_variable].append(variable)                  # Add the right variable to the list relacionated to the left variable
+                unit_variables[left_variable].append(variable)                  # Add the right variable to the list related to the left variable
                 unit_found = True                                               # The unit production has been found in the rule
-        if unit_found:                                                          # If the unit porduction was found
-            must_delete_rules.append(rule)                                      # Add the rule to the list of productio nrules that must be removed
+        if unit_found:                                                          # If the unit production was found
+            must_delete_rules.append(rule)                                      # Add the rule to the list of production rules that must be removed
             unit_found = False                                                  # Set the boolean to false
     for rule in must_delete_rules:
         simplified_grammar.production_rules.remove(rule)                        # Removes the production rules from the grammar
@@ -85,8 +85,8 @@ def delete_useless_symbols():
     # First Step (Symbols that produces terminals):
     V1 = []                                                                     # Creates the list of symbols that can generate a terminal directly or indirectly
     V1_size = 0                                                                 # Represents the size of the V1 symbols' list
-    V1_growed = True                                                            # Boolean that represents if the V1 symbols' list has growed up or not. For now this one is True
-    while(V1_growed):                                                           # Checks if the V1 growed up to continue the loop
+    V1_growed = True                                                            # Boolean that represents if the V1 symbols' list has grown up or not. For now this one is True
+    while(V1_growed):                                                           # Checks if the V1 grown up to continue the loop
         # Detects if the symbol generates a terminal directly:
         for rule in simplified_grammar.production_rules:                        # Search in the grammar's rules
             index = rule.find(">")                                              # Finds the index of ">"
@@ -108,11 +108,11 @@ def delete_useless_symbols():
 
         new_V1_size = len(V1)                                                   # Calculates the new size of the V1 list
 
-        if new_V1_size > V1_size:                                               # Checks if V1 has growed up
-            V1_size = new_V1_size                                               # if has growed up, replaces the original size
-            V1_growed = True                                                    # and indicates that has growed up by the boolean True
+        if new_V1_size > V1_size:                                               # Checks if V1 has grown up
+            V1_size = new_V1_size                                               # if has grown up, replaces the original size
+            V1_growed = True                                                    # and indicates that has grown up by the boolean True
         else:
-            V1_growed = False                                                   # If haven't growed up, the boolean now is False
+            V1_growed = False                                                   # If haven't grown up, the boolean now is False
 
     must_delete_variables = []                                                  # List of the variables that will be deleted from the grammar
     must_delete_rules = []                                                      # List of production rules that will be deleted from the grammar
@@ -134,9 +134,9 @@ def delete_useless_symbols():
     V2.append(simplified_grammar.initial_symbol)                                # Add the initial symbol in V2 list
     V2_size = 1                                                                 # Represents the size of the V2 variables' list
     T2_size = 0                                                                 # Represents the size of the T2 terminals' list
-    V2_growed = True                                                            # Boolean that represents if the V2 variables' list has growed up or not. For now this one is True
-    T2_growed = True                                                            # Boolean that represents if the T2 terminals' list has growed up or not. For now this one is True
-    while(V2_growed or T2_growed):                                              # Checks if the V2 or T2 growed up to continue the loop
+    V2_growed = True                                                            # Boolean that represents if the V2 variables' list has grown up or not. For now this one is True
+    T2_growed = True                                                            # Boolean that represents if the T2 terminals' list has grown up or not. For now this one is True
+    while(V2_growed or T2_growed):                                              # Checks if the V2 or T2 grown up to continue the loop
         for rule in simplified_grammar.production_rules:                        # Search in the grammar's rules
             index = rule.find(">")                                              # Finds the index of ">"
             right_of_production = rule[(index+2):]                              # String that will be the right of the production
@@ -150,17 +150,17 @@ def delete_useless_symbols():
                         T2.append(symbol)                                       # the symbol will be put on T2 list
         new_V2_size = len(V2)                                                   # Calculates the new size of the V2 list
         new_T2_size = len(T2)                                                   # Calculates the new size of the T2 list
-        if new_V2_size > V2_size:                                               # Checks if V2 has growed up
-            V2_size = new_V2_size                                               # if has growed up, replaces the original size
-            V2_growed = True                                                    # and indicates that has growed up by the boolean True
+        if new_V2_size > V2_size:                                               # Checks if V2 has grown up
+            V2_size = new_V2_size                                               # if has grown up, replaces the original size
+            V2_growed = True                                                    # and indicates that has grown up by the boolean True
         else:
-            V2_growed = False                                                   # If haven't growed up, the boolean now is False
+            V2_growed = False                                                   # If haven't grown up, the boolean now is False
 
-        if new_T2_size > T2_size:                                               # Checks if T2 has growed up
-            T2_size = new_T2_size                                               # if has growed up, replaces the original size
-            T2_growed = True                                                    # and indicates that has growed up by the boolean True
+        if new_T2_size > T2_size:                                               # Checks if T2 has grown up
+            T2_size = new_T2_size                                               # if has grown up, replaces the original size
+            T2_growed = True                                                    # and indicates that has grown up by the boolean True
         else:
-            T2_growed = False                                                   # If haven't growed up, the boolean now is False
+            T2_growed = False                                                   # If haven't grown up, the boolean now is False
 
     must_delete_rules = []                                                      # List of production rules that will be deleted from the grammar
     must_delete_symbols = []                                                    # List of symbols that will be deleted from the grammar
@@ -195,7 +195,7 @@ Chomsky Normal Form
 """
 
 def chomsky_normal_form():
-    extra_variables_v = 1                                                       # Counter for the extra variables that produces 2 variables that will be added to the grammar
+    extra_variables_v = 1                                                       # Counter for the extra variables that produce 2 variables that will be added to the grammar
     must_delete_rules = []                                                      # List of production rules that will be deleted from the grammar
 
     # Creates the variables that generates only one terminal
@@ -214,7 +214,7 @@ def chomsky_normal_form():
         if number_of_symbols > 2:
             for symbol in right_symbols:
                 if symbol in simplified_grammar.terminals:
-                    new_rule = rule.replace(symbol, ("C" + symbol))             # Replaces the ocorrence of the terminal symbol withthe variable that produces the terminal
+                    new_rule = rule.replace(symbol, ("C" + symbol))             # Replaces the occurrence of the terminal symbol with the variable that produces the terminal
                     must_delete_rules.append(rule)                              # Add the old rule in the list of rules that must be removed from the grammar
                     simplified_grammar.production_rules.append(new_rule)        # Add the new rule to the grammar
 
@@ -249,7 +249,7 @@ def chomsky_normal_form():
                     new_rule = rule[:(index + 2)] + right_symbols[0] + " " + "C" + terminal # Creates the new rule
                     must_delete_rules.append(rule)                              # Add the old rule in the list of rules that must be removed from the grammar
                     simplified_grammar.production_rules.append(new_rule)        # Add the new rule to the grammar
-            if right_symbols[0] in simplified_grammar.terminals and right_symbols[1] in simplified_grammar.terminals: # If there are two temrinals in the production
+            if right_symbols[0] in simplified_grammar.terminals and right_symbols[1] in simplified_grammar.terminals: # If there are two terminals in the production
                 new_rule = rule[:(index + 2)] + "C" + right_symbols[0] + " " + "C" + right_symbols[1] # Creates the new rule
                 must_delete_rules.append(rule)                                  # Add the old rule in the list of rules that must be removed from the grammar
                 simplified_grammar.production_rules.append(new_rule)            # Add the new rule to the grammar
@@ -287,7 +287,7 @@ print("  S = " + simplified_grammar.initial_symbol)
 
 chomsky_normal_form()
 # The useless symbols algorithm will be running again in the code just in case that if there's a grammar that is already in the normal form before the normal form algorithm.
-# This is because the normal form process can create useless symbols and productions, and the useless symbols algorithm do not alterate the normal form one.
+# This is because the normal form process can create useless symbols and productions, and the useless symbols algorithm do not change the normal form.
 delete_useless_symbols()
 print("\n This is the new grammar after the Chomsky normal form process:\n")
 print(" G'' = (V'', T'', P'', S)\n")
