@@ -32,7 +32,27 @@ def CYK(word):
         chart[word_length - 1][terminal_analyzed] = variables_list
         terminal_analyzed += 1                                                  # Increment for the next terminal of the word
 
+    height = 1                                                                  # The height of the line that will be filled in each step (index)
+    for s in range (1, word_length):
+        word_part = height + 1                                                      # The number of word's terminals that will be analyzed
+        for r in range(0,word_length-s):
+            variables_list = []                                                 # Starts the list of valid variables empty
+            for k in range(0, s):
+                for production in simplified_grammar.production_rules:
+                    index = production.find(">") + 2                            # The index marks the first char in the right of the production
+                    produced_variables = production[index:].split(" ")          # Splits the two variables on the right of the production into a list
+                    if chart[k][r] != 0 and chart[s-k-1][r+k+1] != 0:           # Only updates if the values that will be evaluated below and diagonally are not empty
+                        if produced_variables[0] in chart[k][r]:                # Checks if the first variable is in the list of variables that form the terminal that is currently below
+                            if produced_variables[1] in chart[s-k-1][r+k+1]:    # Checks if the second variable is in the list of variables that form the terminal that is currently diagonally to the right below
+                                variable_of_production = production[:(index - 3)]   # If valid adds the variable on the left of the production
+                                if variable_of_production not in variables_list:    # To the list of valid variables. Only if it isn't there already!!
+                                    variables_list.append(variable_of_production)
+            chart[s][r] = variables_list                                        # Updates the current position with the list of valid variables
+
     print_chart(chart, word_length)
+    if simplified_grammar.initial_symbol in chart[word_length-1][0]:            # If the initial_symbol is in the first position
+        return 1                                                                # Returns true otherwise returns error
+    else: return -1
 
 
 
